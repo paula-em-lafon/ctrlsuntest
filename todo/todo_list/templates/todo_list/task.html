@@ -1,0 +1,9 @@
+{% extends './headerblock.html' %}
+
+{% block content %}
+<h1>Detail for task {{task.task_name}}</h1>
+<h3>Assigned to: {{task.assigned_to}}</h3>
+<h3>Status: {{task.get_status_display}}</h3>
+<h3>deadline: {{task.deadline}}</h3>
+<h3><a href="{% url 'tasks' %}">go back</a></h3>
+{% endblock %}

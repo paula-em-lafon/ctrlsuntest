@@ -1,0 +1,38 @@
+{% extends './headerblock.html' %}
+
+{% block content %}
+<h1>TODOS</h1>
+<a href="{% url 'task-create' %}">add task</a>
+
+<form action="" method="get">
+    {{ filter.form }}
+    <input type="submit" />
+</form>
+
+<table>
+    <tr>
+        <th>item</th>
+        <th>Assigned to</th>
+        <th>Status</th>
+        <th>Deadline</th>
+        <th>detail</th>
+        <th>edit</th>Create
+        <td>delete</td>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{task.task_name}}</td>
+        <td>{{task.assigned_to}}</td>
+        <td>{{task.get_status_display}}</td>
+        <td>{{task.deadline}}</td>
+        <td><a href="{% url 'task' task.id %}">detail</a></td>
+        <td><a href="{% url 'task-update' task.id %}">edit</a></td>
+        {% if task.status == 'CP' %}
+            <td><a href="{% url 'task-delete' task.id %}">delete</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
